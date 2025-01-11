@@ -12,6 +12,8 @@
     var socketio = io();
 
     const messages = document.getElementById('messages');
+    const messageInput = document.getElementById('message');
+    const sendButton = document.getElementById('send-btn');
     const createMessage = (name, msg) => {
         const content = `
         <div class="text" style="color: #ffffff; background-color: #535860; padding: 10px; margin: 10px; border-radius: 10px;">
@@ -35,10 +37,18 @@
         socketio.emit('message', { data: message.value });
         message.value = "";
     }
+
+    sendButton.addEventListener('click', sendMessage);
+
+    messageInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
 </script>
 {% for msg in messages %}
-    <script type="text/javascript">
-        createMessage('{{msg.name}}', '{{msg.message}}');
-    </script>
+<script type="text/javascript">
+    createMessage('{{msg.name}}', '{{msg.message}}');
+</script>
 {% endfor %}
 {% endblock %}
