@@ -2,6 +2,8 @@
 
 This is a simple chat room application built using Flask, Socket.IO, and JavaScript. Users can join chat rooms, send messages, and see messages from other users in real-time.
 
+![Screenshot of the chat application](screenshot.jpg)
+
 ## Features
 
 - Join existing chat rooms or create new ones
