@@ -41,7 +41,7 @@ This is a simple chat room application built using Flask, Socket.IO, and JavaScr
     python main.py
     ```
 
-2. Open your web browser and navigate to `http://127.0.0.1:5000`.
+2. Open your web browser and navigate to [localhost](http://127.0.0.1:5000).
 
 ## Project Structure
 
@@ -50,7 +50,7 @@ This is a simple chat room application built using Flask, Socket.IO, and JavaScr
   - `base.html`: Base template with common layout.
   - `home.html`: Home page template where users can join or create chat rooms.
   - `room.html`: Chat room template where users can send and receive messages.
-- [style.css](styles.css): Contains the CSS styles for the application.
+- [style.css](static/css/styles.css): Contains the CSS styles for the application.
 
 ## License
 
