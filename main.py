@@ -67,7 +67,7 @@ def room():
     room = session.get("room")
     if room is None or session.get("name") is None or room not in rooms:
         return redirect(url_for("home"))
-    return render_template("room.html")
+    return render_template("room.html", code=room, messages=rooms[room]["messages"])
 
 
 @socketio.on("connect")
@@ -96,6 +96,20 @@ def disconnect():
             del rooms[room]
     send({"name": name, "message": "has left the room."}, to=room)
     print(f"{name} has left room {room}.")
+
+
+@socketio.on("message")
+def message(data):
+    room = session.get("room")
+    name = session.get("name")
+    if not room or not name:
+        return
+    if room not in rooms:
+        return
+    message = data["data"]
+    send({"name": name, "message": message}, to=room)
+    rooms[room]["messages"].append({"name": name, "message": message})
+    print(f"{name}: {message}")
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 
