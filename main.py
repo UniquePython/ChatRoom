@@ -4,6 +4,7 @@ from flask_socketio import join_room, leave_room, send, SocketIO
 
 import random
 import secrets
+from datetime import datetime
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -107,9 +108,11 @@ def message(data):
     if room not in rooms:
         return
     message = data["data"]
-    send({"name": name, "message": message}, to=room)
-    rooms[room]["messages"].append({"name": name, "message": message})
-    print(f"{name}: {message}")
+    timestamp = datetime.now().strftime(r'%d-%m-%Y %H:%M:%S')
+    content = {"name": name, "message": message, "timestamp": timestamp}
+    send(content, to=room)
+    rooms[room]["messages"].append(content)
+    print(f"{timestamp} - {name}: {message}")
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 
