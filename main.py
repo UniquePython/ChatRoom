@@ -14,6 +14,7 @@ import os
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(64)
 socketio = SocketIO(app)
+port = int(os.environ.get('PORT', 5000))
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -119,6 +120,7 @@ def message(data):
 
 
 # RUN APP ---------------------------------------------------------------------------------------------------------------------------
-if __name__ == "__main__":
-    socketio.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+# Removed since using gunicorn
+# if __name__ == "__main__":
+#     socketio.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 # -----------------------------------------------------------------------------------------------------------------------------------
