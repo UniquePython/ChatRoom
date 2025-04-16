@@ -14,6 +14,7 @@ import os
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(64)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")  # Set this in Render
+print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 socketio = SocketIO(app)
